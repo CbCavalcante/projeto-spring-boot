@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 
 
 @RestController
@@ -24,10 +25,15 @@ public class PrimeiraController {
     }
     
     @PostMapping("/bodyParams")
-    public String postMethodName(@RequestBody Usuario usuario) {
+    public String bodyParams(@RequestBody Usuario usuario) {
         return "bodyParams" + usuario.username();
     }
     
     record Usuario(String username){
+    }
+
+    @PostMapping("/metodoHeaders")
+    public String metedoHeaders(@RequestHeader("name") String name) {
+        return "bodyParams" + name;
     }
 }
