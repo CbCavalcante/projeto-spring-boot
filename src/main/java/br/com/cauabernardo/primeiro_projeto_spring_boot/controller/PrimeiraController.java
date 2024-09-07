@@ -5,6 +5,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 @RestController
 @RequestMapping("/primeiroController")
@@ -18,5 +21,13 @@ public class PrimeiraController {
     @GetMapping("/queryParams")
     public String queryParams(@RequestParam String id) {
         return "O parametro com query params é " + id;
-    }   
+    }
+    
+    @PostMapping("/bodyParams")
+    public String postMethodName(@RequestBody Usuario usuario) {
+        return "bodyParams" + usuario.username();
+    }
+    
+    record Usuario(String username){
+    }
 }
